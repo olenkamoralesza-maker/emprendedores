@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfecto, te has validado</title>
+<style>
+  :root{
+    --bar-blue:#7fbde8;
+    --bar-line:#2f7fc9;
+    --bg-card:#eef6fc;
+    --bg-card-bottom:#dceefb;
+    --navy:#0f3a5f;
+    --blue-mid:#5b9bd5;
+    --blue-light:#bcdcf2;
+    --white:#ffffff;
+    --text-navy:#0f3a5f;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    background:#e9eef2;
+    font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding:40px 16px;
+  }
+
+  .phone{
+    width:390px;
+    max-width:100%;
+    background:var(--bar-blue);
+    border-radius:10px;
+    padding:0;
+    box-shadow:0 20px 50px rgba(20,50,80,0.25);
+    overflow:hidden;
+  }
+
+  .top-bar{
+    height:52px;
+    background:var(--bar-blue);
+    position:relative;
+  }
+  .top-bar::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:6px;
+    background:var(--bar-line);
+  }
+
+  .bottom-bar{
+    height:60px;
+    background:var(--bar-blue);
+  }
+
+  .card{
+    background:linear-gradient(180deg, var(--bg-card) 0%, var(--bg-card-bottom) 100%);
+    margin:18px;
+    border-radius:36px;
+    padding:50px 30px 0 30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* Check badge */
+  .badge-wrap{
+    position:relative;
+    width:220px;
+    height:220px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:26px;
+  }
+
+  .badge-ring{
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    border:16px solid var(--blue-light);
+    border-right-color:transparent;
+    transform:rotate(45deg);
+  }
+
+  .badge-circle{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #8fbfe6, var(--blue-mid) 55%, #3f7bb0 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 16px rgba(20,60,100,0.25);
+  }
+
+  .badge-circle svg{
+    width:72px;
+    height:72px;
+  }
+
+  .status-text{
+    font-size:20px;
+    font-weight:800;
+    color:var(--text-navy);
+    margin-bottom:60px;
+    text-align:center;
+  }
+
+  .listo-btn{
+    width:100%;
+    max-width:330px;
+    height:84px;
+    border-radius:42px;
+    background:linear-gradient(180deg, #ffffff, #f3f7fb);
+    box-shadow:0 10px 20px rgba(20,60,100,0.15), inset 0 -4px 0 rgba(150,180,200,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    font-weight:700;
+    color:var(--text-navy);
+    margin-bottom:60px;
+    border:none;
+    cursor:pointer;
+  }
+
+  /* Logo + skyline */
+  .footer-area{
+    position:relative;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .logo-circle{
+    width:210px;
+    height:210px;
+    border-radius:50%;
+    background:var(--white);
+    box-shadow:0 10px 24px rgba(20,60,100,0.15);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+    margin-bottom:-30px;
+  }
+
+  .logo-icon{
+    width:70px;
+    height:70px;
+    margin-bottom:2px;
+  }
+
+  .logo-text{
+    font-size:30px;
+    font-weight:800;
+    color:var(--text-navy);
+    letter-spacing:-1px;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+
+  .logo-leaf{
+    width:14px;
+    height:14px;
+  }
+
+  .logo-sub{
+    font-size:13px;
+    font-weight:700;
+    color:#5b9bd5;
+    letter-spacing:0.5px;
+    margin-top:2px;
+  }
+
+  .skyline{
+    width:100%;
+    height:120px;
+    display:block;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="top-bar"></div>
+
+  <div class="card">
+
+    <div class="badge-wrap">
+      <div class="badge-ring"></div>
+      <div class="badge-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12.5l5 5L20 6"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="status-text">Perfecto, te has validado</div>
+
+    <button class="listo-btn">listo</button>
+
+    <div class="footer-area">
+      <div class="logo-circle">
+        <svg class="logo-icon" viewBox="0 0 64 64" fill="none">
+          <circle cx="18" cy="14" r="6" fill="#0f3a5f"/>
+          <path d="M12 34c0-8 4-12 6-12s6 4 6 12" stroke="#0f3a5f" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M14 30l16-16" stroke="#0f3a5f" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M22 8h8v8" stroke="#0f3a5f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="30" y="26" width="6" height="12" rx="1.5" fill="#5b9bd5"/>
+          <rect x="39" y="20" width="6" height="18" rx="1.5" fill="#7fb8e6"/>
+          <rect x="48" y="14" width="6" height="24" rx="1.5" fill="#a9d3f0"/>
+        </svg>
+        <div class="logo-text">small
+          <svg class="logo-leaf" viewBox="0 0 24 24" fill="#5b9bd5">
+            <path d="M20 4c-8 0-14 6-14 14 8 0 14-6 14-14z"/>
+          </svg>
+        </div>
+        <div class="logo-sub">entrepreneurs</div>
+      </div>
+
+      <svg class="skyline" viewBox="0 0 390 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#7fb8e6" stroke-width="1.5">
+          <path d="M0 120 L0 90 L20 90 L20 100 L35 100 L35 70 L35 70 L45 70 L45 120"/>
+          <path d="M50 120 L50 60 L58 60 L58 45 L66 45 L66 60 L74 60 L74 120"/>
+          <path d="M80 120 L80 80 L95 80 L95 55 L110 55 L110 80 L125 80 L125 120"/>
+          <path d="M130 120 L130 40 L150 40 L150 120"/>
+          <path d="M155 120 L155 65 L165 65 L165 50 L175 50 L175 65 L185 65 L185 120"/>
+          <path d="M190 120 L190 30 L205 30 L205 55 L215 55 L215 120"/>
+          <path d="M220 120 L220 75 L235 75 L235 55 L250 55 L250 75 L260 75 L260 120"/>
+          <path d="M265 120 L265 45 L280 45 L280 65 L290 65 L290 120"/>
+          <path d="M295 120 L295 85 L305 85 L305 60 L320 60 L320 85 L335 85 L335 120"/>
+          <path d="M340 120 L340 35 L355 35 L355 60 L365 60 L365 120"/>
+          <path d="M370 120 L370 75 L385 75 L385 95 L390 95 L390 120"/>
+        </g>
+        <g fill="none" stroke="#7fb8e6" stroke-width="1.2" stroke-linecap="round" opacity="0.7">
+          <path d="M15 115 q5 -6 10 0"/>
+          <path d="M60 115 q5 -6 10 0"/>
+          <path d="M105 115 q5 -6 10 0"/>
+          <path d="M200 115 q5 -6 10 0"/>
+          <path d="M310 115 q5 -6 10 0"/>
+          <path d="M370 115 q5 -6 10 0"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar"></div>
+</div>
+
+<script>
+  document.querySelector('.listo-btn').addEventListener('click', () => {
+    window.location.href = 'success-screen.html';
+  });
+</script>
+
+</body>
+</html>

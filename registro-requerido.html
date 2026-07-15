@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro requerido</title>
+<style>
+  :root{
+    --outer-bg:#0f4c6b;
+    --white-line: rgba(255,255,255,0.95);
+    --text-dark-red:#8c1c1c;
+    --text-red:#b32424;
+    --link-purple:#7a2b8c;
+    --icon-red:#b32424;
+    --icon-red-dark:#8c1c1c;
+    --btn-text:#8c1c1c;
+    --input-icon:#9aa0a6;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family: 'Poppins','Segoe UI',Arial,sans-serif;
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:#0d1b26;
+    min-height:100vh;
+    padding:24px 0;
+  }
+
+  .phone{
+    width:390px;
+    max-width:100%;
+    min-height:100vh;
+    background: var(--outer-bg);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .top-bar, .bottom-bar{
+    height:30px;
+    background: var(--white-line);
+    flex-shrink:0;
+  }
+
+  .content-wrap{
+    flex:1;
+    padding:20px 16px;
+    display:flex;
+  }
+
+  .card{
+    flex:1;
+    border-radius:34px;
+    border:2px solid rgba(255,255,255,0.4);
+    background: linear-gradient(180deg,
+      #ffffff 0%,
+      #ffffff 28%,
+      #f6d9d9 55%,
+      #e08a8a 75%,
+      #c23a3a 100%);
+    padding:34px 26px 30px;
+    box-shadow: 0 12px 30px rgba(0,10,25,0.4);
+  }
+
+  /* warning icon */
+  .icon-ring{
+    position:relative;
+    width:150px;
+    height:150px;
+    margin:0 auto 22px;
+    border-radius:50%;
+    border:7px solid var(--icon-red);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .icon-ring::after{
+    content:"";
+    position:absolute;
+    left:-2px;
+    bottom:12px;
+    width:16px;
+    height:16px;
+    border-left:7px solid var(--icon-red);
+    border-bottom:7px solid transparent;
+    border-radius:50%;
+    transform: rotate(-30deg);
+  }
+
+  .warning-triangle{
+    width:82px;
+    height:82px;
+  }
+
+  .warning-text{
+    text-align:center;
+    color: var(--text-red);
+    font-size:16.5px;
+    font-weight:700;
+    line-height:1.45;
+    margin:0 0 28px;
+  }
+
+  .warning-text .link{
+    color: var(--link-purple);
+  }
+
+  /* fields */
+  .field{
+    margin-bottom:20px;
+  }
+
+  .field label{
+    display:block;
+    font-size:15.5px;
+    font-weight:700;
+    color: var(--text-dark-red);
+    margin-bottom:8px;
+  }
+
+  .input-wrap{
+    position:relative;
+  }
+
+  .input-wrap svg{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform: translateY(-50%);
+    width:20px;
+    height:20px;
+    stroke: var(--input-icon);
+    fill: var(--input-icon);
+  }
+
+  .field input{
+    width:100%;
+    height:48px;
+    border-radius:24px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: #ffffff;
+    padding:0 16px 0 46px;
+    color:#3a3a3a;
+    font-size:15px;
+    outline:none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    transition: box-shadow .15s ease;
+  }
+
+  .field input::placeholder{
+    color:#9aa0a6;
+  }
+
+  .field input:focus{
+    box-shadow: 0 0 0 3px rgba(140,28,28,0.35);
+  }
+
+  /* protection text */
+  .protection-text{
+    text-align:center;
+    color: var(--text-red);
+    font-size:15.5px;
+    font-weight:700;
+    line-height:1.4;
+    margin:26px 0 16px;
+  }
+
+  .checks{
+    display:flex;
+    gap:12px;
+    margin-bottom:34px;
+  }
+
+  .check-item{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#ffffff;
+    border-radius:16px;
+    padding:12px 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    cursor:pointer;
+    user-select:none;
+  }
+
+  .check-box{
+    flex-shrink:0;
+    width:24px;
+    height:24px;
+    border-radius:5px;
+    background:#1a1a1a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .check-box svg{
+    width:15px;
+    height:15px;
+    stroke:#ffffff;
+    stroke-width:3;
+    fill:none;
+    display:none;
+  }
+
+  .check-item.checked .check-box svg{ display:block; }
+  .check-item.checked .check-box{ background:#1a1a1a; }
+  .check-item:not(.checked) .check-box{ background:#c7c7c7; }
+
+  .check-item span{
+    font-size:13px;
+    font-weight:600;
+    color:#2a2a2a;
+    line-height:1.25;
+  }
+
+  /* register button */
+  .btn-registrar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:29px;
+    background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%);
+    color: var(--btn-text);
+    font-size:21px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:
+      0 6px 14px rgba(0,0,0,0.3),
+      inset 0 -2px 3px rgba(0,0,0,0.08);
+  }
+
+  .btn-registrar:active{
+    transform: translateY(1px);
+  }
+
+  .btn-registrar svg{
+    width:26px;
+    height:26px;
+  }
+
+  @media (max-width:400px){
+    .phone{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="phone">
+    <div class="top-bar"></div>
+
+    <div class="content-wrap">
+      <div class="card">
+
+        <div class="icon-ring">
+          <svg class="warning-triangle" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 6l28 50H4z" fill="#b32424"/>
+            <rect x="29" y="24" width="6" height="16" rx="2" fill="#ffffff"/>
+            <circle cx="32" cy="46" r="3.5" fill="#ffffff"/>
+          </svg>
+        </div>
+
+        <p class="warning-text">
+          Para poder utilizar la aplicación es necesario que te encuentres registrado en nuestra plataforma, para eso debes completar tus datos a continuación. Si ya tienes una cuenta creada, inicia sesión con tu número de
+          <span class="link">RUC</span> y
+          <span class="link">tu clave de usuario.</span>
+        </p>
+
+        <form id="registroForm">
+          <div class="field">
+            <label for="ruc">RUC:</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10z"/><path d="M3 22c0-5 4-9 9-9s9 4 9 9"/></svg>
+              <input type="text" id="ruc" name="ruc" placeholder="Ingresa tu RUC" inputmode="numeric" maxlength="11" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Ingrese la E-mail:</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z" fill="none" stroke-width="1.6"/><path d="M3 7l9 6 9-6" fill="none" stroke-width="1.6"/></svg>
+              <input type="email" id="email" name="email" placeholder="Ingresa tu E-mail" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="clave">Escoge la clave que usarás en el registro del producto:</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke-width="1.6"/><path d="M8 11V7a4 4 0 018 0v4" fill="none" stroke-width="1.6"/></svg>
+              <input type="password" id="clave" name="clave" placeholder="Ingresa tu contraseña" required>
+            </div>
+          </div>
+        </form>
+
+        <p class="protection-text">
+          Antes de registrarte en la web debe asegurarse, aceptar el tipo de protección:
+        </p>
+
+        <div class="checks">
+          <div class="check-item checked" id="check1" data-name="clausula">
+            <div class="check-box">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>De la Cláusula de Innocuidad</span>
+          </div>
+
+          <div class="check-item checked" id="check2" data-name="defensa">
+            <div class="check-box">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>De la defensa del consumidor</span>
+          </div>
+        </div>
+
+        <button type="submit" form="registroForm" class="btn-registrar">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="10" width="14" height="10" rx="2" fill="#b32424"/>
+            <path d="M7 10V7a4 4 0 018 0v3" fill="none" stroke="#b32424" stroke-width="2"/>
+            <path d="M18 15l3 5H15z" fill="#ffffff" stroke="#b32424" stroke-width="1"/>
+            <rect x="17.4" y="17.5" width="1.2" height="1.6" fill="#b32424"/>
+          </svg>
+          Registrar
+        </button>
+
+      </div>
+    </div>
+
+    <div class="bottom-bar"></div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.check-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('checked');
+      });
+    });
+
+    document.getElementById('registroForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Guardar el RUC y Email si se desea
+      localStorage.setItem('usuarioRuc', document.getElementById('ruc').value);
+      localStorage.setItem('usuarioEmail', document.getElementById('email').value);
+      // Redirigir
+      window.location.href = 'crear-cuenta.html';
+    });
+  </script>
+
+</body>
+</html>

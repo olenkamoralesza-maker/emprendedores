@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear cuenta</title>
+<style>
+  :root{
+    --bg-top:#a9cbe8;
+    --bg-bottom:#cfe3f4;
+    --label:#1f5f8b;
+    --input-fill:#4f8fc0;
+    --input-fill-dark:#3f7bab;
+    --input-border: rgba(255,255,255,0.55);
+    --white-line: rgba(255,255,255,0.9);
+    --btn-text:#1f5f8b;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family: 'Poppins','Segoe UI',Arial,sans-serif;
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:#0d1b26;
+    min-height:100vh;
+    padding:24px 0;
+  }
+
+  .phone{
+    width:390px;
+    max-width:100%;
+    min-height:100vh;
+    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 55%, var(--bg-bottom) 100%);
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* header */
+  .header{
+    position:relative;
+    padding-top:34px;
+    padding-bottom:26px;
+    text-align:center;
+  }
+
+  .header::before{
+    content:"";
+    position:absolute;
+    top:112px;
+    left:0;
+    right:0;
+    height:3px;
+    background: var(--white-line);
+    z-index:1;
+  }
+
+  .icon-ring{
+    position:relative;
+    width:150px;
+    height:150px;
+    margin:0 auto;
+    border-radius:50%;
+    border:5px solid rgba(255,255,255,0.95);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+    background: transparent;
+  }
+
+  .icon-ring::after{
+    content:"";
+    position:absolute;
+    right:-4px;
+    bottom:18px;
+    width:14px;
+    height:14px;
+    border-right:5px solid rgba(255,255,255,0.95);
+    border-bottom:5px solid transparent;
+    border-radius:50%;
+    transform: rotate(35deg);
+  }
+
+  .avatar{
+    width:64px;
+    height:64px;
+  }
+
+  .title{
+    margin-top:14px;
+    font-size:26px;
+    font-weight:700;
+    color:#ffffff;
+    letter-spacing:0.3px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+
+  /* form */
+  .form{
+    padding:6px 26px 20px;
+    flex:1;
+  }
+
+  .field{
+    margin-bottom:20px;
+  }
+
+  .field label{
+    display:block;
+    font-size:15.5px;
+    font-weight:700;
+    color: var(--label);
+    margin-bottom:8px;
+  }
+
+  .field input{
+    width:100%;
+    height:46px;
+    border-radius:23px;
+    border: 1px solid var(--input-border);
+    background: linear-gradient(180deg, var(--input-fill) 0%, var(--input-fill-dark) 100%);
+    box-shadow:
+      inset 0 2px 3px rgba(255,255,255,0.35),
+      inset 0 -3px 6px rgba(0,40,70,0.35),
+      0 1px 1px rgba(255,255,255,0.4);
+    padding:0 18px;
+    color:#eaf3fb;
+    font-size:15px;
+    outline:none;
+    transition: box-shadow .15s ease;
+  }
+
+  .field input::placeholder{
+    color: rgba(255,255,255,0.55);
+  }
+
+  .field input:focus{
+    box-shadow:
+      inset 0 2px 3px rgba(255,255,255,0.35),
+      inset 0 -3px 6px rgba(0,40,70,0.35),
+      0 0 0 3px rgba(255,255,255,0.5);
+  }
+
+  /* password field with show/hide toggle */
+  .password-wrap{
+    position:relative;
+  }
+
+  .password-wrap input{
+    padding-right:46px;
+  }
+
+  .toggle-pass{
+    position:absolute;
+    right:16px;
+    top:50%;
+    transform: translateY(-50%);
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .toggle-pass svg{
+    width:20px;
+    height:20px;
+    stroke: rgba(255,255,255,0.85);
+    fill:none;
+    stroke-width:1.8;
+  }
+
+  /* footer button */
+  .footer{
+    position:relative;
+    padding:18px 26px 34px;
+    margin-top:auto;
+  }
+
+  .footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background: var(--white-line);
+  }
+
+  .btn-siguiente{
+    display:block;
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:29px;
+    background: linear-gradient(180deg, #ffffff 0%, #eef5fb 100%);
+    color: var(--btn-text);
+    font-size:19px;
+    font-weight:700;
+    letter-spacing:0.3px;
+    box-shadow:
+      0 6px 14px rgba(10,50,90,0.22),
+      inset 0 -2px 3px rgba(150,190,220,0.35);
+    cursor:pointer;
+    margin-top:20px;
+  }
+
+  .btn-siguiente:active{
+    transform: translateY(1px);
+  }
+
+  @media (max-width:400px){
+    .phone{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="phone">
+    <div class="header">
+      <div class="icon-ring">
+        <svg class="avatar" viewBox="0 0 64 64" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="20" r="14"/>
+          <path d="M32 38c-16 0-24 9-24 20v6h48v-6c0-11-8-20-24-20z"/>
+        </svg>
+      </div>
+      <div class="title">Crear cuenta</div>
+    </div>
+
+    <form class="form" id="crearCuentaForm">
+      <div class="field">
+        <label for="nombres">Nombres:</label>
+        <input type="text" id="nombres" name="nombres" required>
+      </div>
+
+      <div class="field">
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required>
+      </div>
+
+      <div class="field">
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" inputmode="numeric" maxlength="8" required>
+      </div>
+
+      <div class="field">
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+      </div>
+
+      <div class="field">
+        <label for="contrasena">Contraseña:</label>
+        <div class="password-wrap">
+          <input type="password" id="contrasena" name="contrasena" required>
+          <button type="button" class="toggle-pass" id="togglePass" aria-label="Mostrar contraseña">
+            <svg id="eyeIcon" viewBox="0 0 24 24">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="celular">Número de celular:</label>
+        <input type="tel" id="celular" name="celular" inputmode="numeric" maxlength="9" required>
+      </div>
+    </form>
+
+    <div class="footer">
+      <button type="submit" form="crearCuentaForm" class="btn-siguiente">Siguiente</button>
+    </div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('togglePass');
+    const passInput = document.getElementById('contrasena');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    toggleBtn.addEventListener('click', () => {
+      const isPassword = passInput.type === 'password';
+      passInput.type = isPassword ? 'text' : 'password';
+      eyeIcon.innerHTML = isPassword
+        ? '<path d="M3 3l18 18"/><path d="M10.6 10.6a3 3 0 004.24 4.24"/><path d="M9.9 4.24A11 11 0 0112 4c7 0 11 7 11 7a13.16 13.16 0 01-3.09 3.94M6.1 6.1A13.16 13.16 0 001 11s4 7 11 7a10.94 10.94 0 004.9-1.14"/>'
+        : '<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>';
+    });
+
+    document.getElementById('crearCuentaForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      localStorage.setItem('nombres', document.getElementById('nombres').value);
+      localStorage.setItem('apellidos', document.getElementById('apellidos').value);
+      window.location.href = 'registrar-empresa.html';
+    });
+  </script>
+
+</body>
+</html>

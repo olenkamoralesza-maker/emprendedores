@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmar información</title>
+<style>
+  :root{
+    --outer-bg:#d6e9f6;
+    --card-dark:#0f4c6b;
+    --card-dark-2:#0c3e58;
+    --border-blue:#2f8fc4;
+    --text-white:#f2f8fc;
+    --accent:#5b98c4;
+    --accent-light:#6fa9d4;
+    --white:#ffffff;
+    --danger:#e04b4b;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family: 'Poppins','Segoe UI',Arial,sans-serif;
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:#0d1b26;
+    min-height:100vh;
+    padding:24px 0;
+  }
+
+  .phone{
+    width:390px;
+    max-width:100%;
+    min-height:100vh;
+    background: var(--outer-bg);
+    position:relative;
+    padding:20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .card{
+    background: linear-gradient(180deg, var(--card-dark) 0%, var(--card-dark-2) 100%);
+    border: 3px solid var(--border-blue);
+    border-radius:34px;
+    padding:26px 22px 22px;
+    box-shadow: 0 10px 26px rgba(0,20,40,0.35);
+  }
+
+  /* header: logo + company name */
+  .top-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:26px;
+  }
+
+  .logo-circle{
+    flex-shrink:0;
+    width:96px;
+    height:96px;
+    border-radius:50%;
+    border:4px solid #ffffff;
+    background: linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#0f2c40;
+    font-size:12.5px;
+    font-weight:600;
+    line-height:1.3;
+    padding:8px;
+  }
+
+  .company-name{
+    flex:1;
+    height:46px;
+    background: var(--white);
+    border-radius:23px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#1f5f8b;
+    font-size:16px;
+    font-weight:700;
+    padding:0 14px;
+    box-shadow: inset 0 -2px 3px rgba(150,190,220,0.3);
+  }
+
+  /* producto */
+  .section-title{
+    color: var(--text-white);
+    font-size:18px;
+    font-weight:700;
+    margin:0 0 12px 4px;
+  }
+
+  .productos{
+    display:flex;
+    gap:12px;
+    margin-bottom:26px;
+  }
+
+  .producto-card{
+    flex:1;
+    background: var(--white);
+    border-radius:20px;
+    padding:14px 10px 16px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    box-shadow: 0 6px 14px rgba(0,20,40,0.25);
+  }
+
+  .producto-img{
+    width:88px;
+    height:88px;
+    border-radius:50%;
+    background: linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    margin-bottom:10px;
+  }
+
+  .producto-img svg{
+    width:22px;
+    height:22px;
+    opacity:0.75;
+  }
+
+  .producto-img span{
+    font-size:9.5px;
+    color: rgba(255,255,255,0.9);
+    text-align:center;
+    padding:0 6px;
+    line-height:1.2;
+  }
+
+  .producto-nombre{
+    font-size:12.5px;
+    font-weight:700;
+    color:#1f5f8b;
+    margin-bottom:10px;
+    text-align:center;
+  }
+
+  .producto-btn{
+    width:100%;
+    height:32px;
+    border:none;
+    border-radius:16px;
+    background: linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 100%);
+    color:#ffffff;
+    font-size:11.5px;
+    font-weight:600;
+    box-shadow: inset 0 -2px 3px rgba(0,40,70,0.2);
+  }
+
+  /* contenido + reseña */
+  .mid-row{
+    display:flex;
+    gap:16px;
+    margin-bottom:24px;
+  }
+
+  .contenido-col{
+    flex:1.1;
+  }
+
+  .contenido-box{
+    width:100%;
+    min-height:170px;
+    background: linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 100%);
+    border: 3px solid var(--white);
+    border-radius:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#ffffff;
+    font-size:15px;
+    font-weight:600;
+    padding:16px;
+    box-shadow: 0 6px 14px rgba(0,20,40,0.25);
+  }
+
+  .resena-col{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .stars{
+    display:flex;
+    gap:6px;
+  }
+
+  .stars svg{
+    width:26px;
+    height:26px;
+  }
+
+  .permisos-tag{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background: linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 100%);
+    border: 2px solid var(--white);
+    border-radius:22px;
+    height:44px;
+    padding:0 16px;
+    color:#0f2c40;
+    font-size:14px;
+    font-weight:700;
+    box-shadow: 0 4px 10px rgba(0,20,40,0.2);
+  }
+
+  .permisos-tag svg{
+    width:18px;
+    height:18px;
+    flex-shrink:0;
+  }
+
+  /* confirm text + buttons */
+  .confirm-text{
+    text-align:center;
+    color: var(--text-white);
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:16px;
+  }
+
+  .btn-row{
+    position:relative;
+    display:flex;
+    gap:14px;
+    padding:14px 4px;
+  }
+
+  .btn-row::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-22px;
+    right:-22px;
+    height:100%;
+    background: var(--white);
+    z-index:0;
+  }
+
+  .btn-si, .btn-no{
+    position:relative;
+    z-index:1;
+    flex:1;
+    height:52px;
+    border:none;
+    border-radius:26px;
+    background: linear-gradient(180deg, #ffffff 0%, #eef5fb 100%);
+    color:#1f5f8b;
+    font-size:19px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:
+      0 6px 12px rgba(10,50,90,0.25),
+      inset 0 -2px 3px rgba(150,190,220,0.35);
+  }
+
+  .btn-si.active, .btn-no.active{
+    box-shadow:
+      0 6px 12px rgba(10,50,90,0.25),
+      inset 0 -2px 3px rgba(150,190,220,0.35),
+      0 0 0 3px #1f5f8b;
+  }
+
+  .btn-si:active, .btn-no:active{
+    transform: translateY(1px);
+  }
+
+  .disclaimer{
+    text-align:center;
+    color: var(--danger);
+    font-size:13.5px;
+    font-weight:600;
+    margin-top:14px;
+  }
+
+  @media (max-width:400px){
+    .phone{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="phone">
+    <div class="card">
+
+      <div class="top-row">
+        <div class="logo-circle">El logo de la<br>empresa</div>
+        <div class="company-name">Nombre de la Empresa</div>
+      </div>
+
+      <div class="section-title">Producto:</div>
+      <div class="productos">
+
+        <div class="producto-card">
+          <div class="producto-img">
+            <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 7h3l2-2h6l2 2h3a1 1 0 011 1v11a1 1 0 01-1 1H4a1 1 0 01-1-1V8a1 1 0 011-1z"/>
+              <circle cx="12" cy="13" r="3.5" fill="#5b98c4"/>
+            </svg>
+            <span>la imagen de producto</span>
+          </div>
+          <div class="producto-nombre">Nombre de producto</div>
+          <button type="button" class="producto-btn">Cuatro cuenta 1</button>
+        </div>
+
+        <div class="producto-card">
+          <div class="producto-img">
+            <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 7h3l2-2h6l2 2h3a1 1 0 011 1v11a1 1 0 01-1 1H4a1 1 0 01-1-1V8a1 1 0 011-1z"/>
+              <circle cx="12" cy="13" r="3.5" fill="#5b98c4"/>
+            </svg>
+            <span>la imagen de producto</span>
+          </div>
+          <div class="producto-nombre">Nombre de producto</div>
+          <button type="button" class="producto-btn">Cuatro cuenta 2</button>
+        </div>
+
+        <div class="producto-card">
+          <div class="producto-img">
+            <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 7h3l2-2h6l2 2h3a1 1 0 011 1v11a1 1 0 01-1 1H4a1 1 0 01-1-1V8a1 1 0 011-1z"/>
+              <circle cx="12" cy="13" r="3.5" fill="#5b98c4"/>
+            </svg>
+            <span>la imagen de producto</span>
+          </div>
+          <div class="producto-nombre">Nombre de producto</div>
+          <button type="button" class="producto-btn">Cuatro cuenta 3</button>
+        </div>
+
+      </div>
+
+      <div class="mid-row">
+        <div class="contenido-col">
+          <div class="section-title">El contenido:</div>
+          <div class="contenido-box">Por qué creó está Empresa</div>
+        </div>
+
+        <div class="resena-col">
+          <div>
+            <div class="section-title">Reseña:</div>
+            <div class="stars" id="stars">
+              <svg viewBox="0 0 24 24" fill="#0f2c40" stroke="#0f2c40" stroke-width="1"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.9-6.2 3.9 1.6-7-5.4-4.7 7.1-.6z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#0f2c40" stroke="#0f2c40" stroke-width="1"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.9-6.2 3.9 1.6-7-5.4-4.7 7.1-.6z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#0f2c40" stroke="#0f2c40" stroke-width="1"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.9-6.2 3.9 1.6-7-5.4-4.7 7.1-.6z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#0f2c40" stroke="#0f2c40" stroke-width="1"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.9-6.2 3.9 1.6-7-5.4-4.7 7.1-.6z"/></svg>
+              <svg viewBox="0 0 24 24" fill="#0f2c40" stroke="#0f2c40" stroke-width="1"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.9-6.2 3.9 1.6-7-5.4-4.7 7.1-.6z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0f2c40" stroke-width="1">
+                <defs>
+                  <linearGradient id="halfStar" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="50%" stop-color="#0f2c40"/>
+                    <stop offset="50%" stop-color="transparent"/>
+                  </linearGradient>
+                </defs>
+                <path fill="url(#halfStar)" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.9-6.2 3.9 1.6-7-5.4-4.7 7.1-.6z"/>
+              </svg>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-title">Los Permisos:</div>
+            <div class="permisos-tag">
+              <svg viewBox="0 0 24 24" fill="#0f2c40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 2h9l5 5v15a1 1 0 01-1 1H6a1 1 0 01-1-1V3a1 1 0 011-1z"/>
+                <path d="M14 2v5h5" fill="#7bb2dd"/>
+              </svg>
+              Los Archivos
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirm-text">Está bien todo tu información</div>
+
+      <div class="btn-row" id="btnRow">
+        <button type="button" class="btn-si" id="btnSi">Si</button>
+        <button type="button" class="btn-no" id="btnNo">No</button>
+      </div>
+
+      <div class="disclaimer">(Si muestra bien tu información puedes corregirla)</div>
+
+    </div>
+  </div>
+
+  <script>
+    const btnSi = document.getElementById('btnSi');
+    const btnNo = document.getElementById('btnNo');
+
+    // Cargar datos de localStorage
+    const nombreComercial = localStorage.getItem('nombreComercial');
+    if (nombreComercial) {
+      document.querySelector('.company-name').textContent = nombreComercial;
+    }
+    const razonSocial = localStorage.getItem('razonSocial');
+    if (razonSocial) {
+      document.querySelector('.contenido-box').textContent = razonSocial;
+    }
+
+    const tipoNegocio = (localStorage.getItem('tipoNegocio') || "").toLowerCase();
+    const palabrasProhibidas = ["arma", "armas", "pistola", "rifle", "munición", "droga", "explosivo", "cuchillo"];
+    let esProhibido = false;
+    for (const palabra of palabrasProhibidas) {
+      if (tipoNegocio.includes(palabra)) {
+        esProhibido = true;
+        break;
+      }
+    }
+
+    btnSi.addEventListener('click', () => {
+      btnSi.classList.add('active');
+      btnNo.classList.remove('active');
+      setTimeout(() => {
+        if (esProhibido) {
+          const tienePermiso = confirm("ALERTA: Se ha detectado intención de vender artículos restringidos (ej. Armas). ¿Cuenta usted con el permiso especial correspondiente para continuar?");
+          if (tienePermiso) {
+            window.location.href = 'validado.html';
+          } else {
+            window.location.href = 'error-screen.html';
+          }
+        } else {
+          window.location.href = 'validado.html';
+        }
+      }, 300);
+    });
+
+    btnNo.addEventListener('click', () => {
+      btnNo.classList.add('active');
+      btnSi.classList.remove('active');
+      setTimeout(() => {
+        window.location.href = 'registrar-empresa.html';
+      }, 300);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Error de permisos</title>
+<style>
+  :root{
+    --bg: #9CCBEA;
+    --bg-dark: #86BEE0;
+    --white: #FFFFFF;
+    --shadow: rgba(30, 70, 100, 0.18);
+    --text: #12324A;
+  }
+
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body{
+    height: 100%;
+  }
+
+  body{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .stripe{
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 14px;
+    background: var(--white);
+  }
+  .stripe.top{ top: 40px; }
+  .stripe.bottom{ bottom: 40px; }
+
+  .screen{
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 32px;
+    position: relative;
+  }
+
+  /* ---------- Nube ---------- */
+  .cloud-wrap{
+    margin-bottom: 12px;
+    filter: drop-shadow(0 6px 10px var(--shadow));
+  }
+
+  .cloud{
+    width: 150px;
+    height: auto;
+  }
+
+  /* ---------- Teléfono ---------- */
+  .phone{
+    width: 280px;
+    aspect-ratio: 320 / 620;
+    background: var(--white);
+    border-radius: 46px;
+    box-shadow: 0 18px 30px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 22px 18px;
+    position: relative;
+    margin-top: -6px;
+  }
+
+  .phone-screen{
+    flex: 1;
+    width: 100%;
+    background: var(--bg-dark);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 18px;
+    text-align: center;
+    gap: 26px;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .x-icon{
+    width: 74px;
+    height: 74px;
+    flex-shrink: 0;
+  }
+
+  .error-text{
+    color: var(--text);
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 1.45;
+    letter-spacing: 0.1px;
+  }
+
+  .home-button{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 3px solid var(--bg-dark);
+    margin-top: 16px;
+  }
+
+  @media (max-width: 380px){
+    .phone{ width: 240px; }
+    .cloud{ width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="stripe top"></div>
+  <div class="stripe bottom"></div>
+
+  <div class="screen">
+
+    <div class="cloud-wrap">
+      <svg class="cloud" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+        <path d="M55 110
+                 C25 110 5 90 5 65
+                 C5 42 22 24 45 22
+                 C50 8 65 -2 82 -2
+                 C102 -2 119 12 122 30
+                 C145 30 165 48 165 70
+                 C165 92 145 110 122 110
+                 Z"
+              fill="#FFFFFF" transform="translate(15,10)"/>
+        <circle cx="88" cy="55" r="6.5" fill="#9CCBEA"/>
+        <circle cx="128" cy="55" r="6.5" fill="#9CCBEA"/>
+        <path d="M85 88 Q108 68 131 88" stroke="#9CCBEA" stroke-width="7" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="phone">
+      <div class="phone-screen">
+        <svg class="x-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#FFFFFF">
+            <rect x="42" y="0" width="16" height="100" rx="8" transform="rotate(45 50 50)"/>
+            <rect x="42" y="0" width="16" height="100" rx="8" transform="rotate(-45 50 50)"/>
+          </g>
+        </svg>
+
+        <p class="error-text">
+          La sección o permiso no fue registrado en la empresa
+          porque no cumple con los requisitos de documentación
+          y permisos necesarios.
+        </p>
+      </div>
+
+      <div class="home-button" style="cursor: pointer;"></div>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelector('.home-button').addEventListener('click', () => {
+      window.location.href = 'promociones.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Permisos de la aplicación</title>
+<style>
+  :root{
+    --bg-top:#a9cbe8;
+    --bg-bottom:#cfe3f4;
+    --label:#1f5f8b;
+    --accent:#4f8fc0;
+    --accent-dark:#3f7bab;
+    --white-line: rgba(255,255,255,0.9);
+    --btn-text:#1f5f8b;
+    --card-bg: rgba(255,255,255,0.35);
+    --card-border: rgba(255,255,255,0.6);
+    --no-permit-bg: rgba(160,195,220,0.55);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family: 'Poppins','Segoe UI',Arial,sans-serif;
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:#0d1b26;
+    min-height:100vh;
+    padding:24px 0;
+  }
+
+  .phone{
+    width:390px;
+    max-width:100%;
+    min-height:100vh;
+    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 55%, var(--bg-bottom) 100%);
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* top white bar */
+  .top-bar{
+    height:34px;
+    background: var(--white-line);
+  }
+
+  /* header */
+  .header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    padding:40px 26px 30px;
+  }
+
+  .header .rule{
+    flex:1;
+    height:5px;
+    border-radius:3px;
+    background: var(--white-line);
+    box-shadow: 0 2px 4px rgba(0,30,60,0.15);
+  }
+
+  .title{
+    font-size:23px;
+    font-weight:700;
+    color:#ffffff;
+    text-align:center;
+    white-space:nowrap;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+
+  /* cards */
+  .cards{
+    padding:0 22px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .card{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius:28px;
+    padding:22px 20px;
+    box-shadow:
+      0 8px 20px rgba(20,70,110,0.12),
+      inset 0 1px 1px rgba(255,255,255,0.6);
+  }
+
+  .icon-circle{
+    flex-shrink:0;
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f3f8fc 70%, #e8f0f7 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:
+      0 6px 14px rgba(20,70,110,0.15),
+      inset 0 -3px 6px rgba(150,190,220,0.25);
+  }
+
+  .icon-circle svg{
+    width:60px;
+    height:60px;
+  }
+
+  .card-content{
+    flex:1;
+    min-width:0;
+  }
+
+  .card-content h3{
+    margin:0 0 4px;
+    font-size:17px;
+    font-weight:700;
+    color: var(--label);
+    line-height:1.25;
+  }
+
+  .card-content p{
+    margin:0 0 14px;
+    font-size:12px;
+    font-weight:600;
+    color: var(--label);
+    opacity:0.85;
+    line-height:1.3;
+  }
+
+  .permit-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+
+  .btn-permit{
+    width:100%;
+    max-width:210px;
+    height:38px;
+    border:none;
+    border-radius:19px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition: all .15s ease;
+  }
+
+  .btn-permit.allow{
+    background: linear-gradient(180deg, #6fa9d4 0%, var(--accent-dark) 100%);
+    color:#ffffff;
+    box-shadow:
+      inset 0 2px 2px rgba(255,255,255,0.4),
+      inset 0 -2px 4px rgba(0,40,70,0.3),
+      0 2px 5px rgba(20,70,110,0.2);
+  }
+
+  .btn-permit.deny{
+    background: var(--no-permit-bg);
+    color: var(--label);
+    box-shadow:
+      inset 0 1px 2px rgba(255,255,255,0.5),
+      inset 0 -2px 3px rgba(0,40,70,0.12);
+  }
+
+  /* selected states */
+  .btn-permit.allow.selected{
+    box-shadow:
+      inset 0 2px 2px rgba(255,255,255,0.4),
+      inset 0 -2px 4px rgba(0,40,70,0.3),
+      0 0 0 3px rgba(255,255,255,0.7);
+  }
+
+  .btn-permit.deny.selected{
+    background: rgba(120,155,180,0.75);
+    color:#ffffff;
+    box-shadow:
+      inset 0 1px 2px rgba(255,255,255,0.3),
+      inset 0 -2px 3px rgba(0,40,70,0.2),
+      0 0 0 3px rgba(255,255,255,0.5);
+  }
+
+  /* footer */
+  .footer{
+    position:relative;
+    padding:26px 26px 34px;
+    margin-top:26px;
+  }
+
+  .footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:34px;
+    background: var(--white-line);
+  }
+
+  .btn-registrar{
+    position:relative;
+    z-index:1;
+    display:block;
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:29px;
+    background: linear-gradient(180deg, #ffffff 0%, #eef5fb 100%);
+    color: var(--btn-text);
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:0.3px;
+    box-shadow:
+      0 6px 14px rgba(10,50,90,0.22),
+      inset 0 -2px 3px rgba(150,190,220,0.35);
+    cursor:pointer;
+  }
+
+  .btn-registrar:active{
+    transform: translateY(1px);
+  }
+
+  @media (max-width:400px){
+    .phone{ width:100%; }
+    .icon-circle{ width:90px; height:90px; }
+    .icon-circle svg{ width:48px; height:48px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="phone">
+    <div class="top-bar"></div>
+
+    <div class="header">
+      <div class="rule"></div>
+      <div class="title">Permisos de la aplicación</div>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cards">
+
+      <!-- Cámara -->
+      <div class="card" data-permission="camara">
+        <div class="icon-circle">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="camGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7bb2dd"/>
+                <stop offset="100%" stop-color="#3f7bab"/>
+              </linearGradient>
+            </defs>
+            <rect x="6" y="18" width="44" height="32" rx="6" fill="url(#camGrad)"/>
+            <rect x="18" y="10" width="16" height="10" rx="3" fill="url(#camGrad)"/>
+            <circle cx="28" cy="34" r="10" fill="#eef5fb"/>
+            <circle cx="28" cy="34" r="6" fill="url(#camGrad)"/>
+            <path d="M46 16l3-3 2 2-3 3z" fill="#7bb2dd"/>
+            <path d="M50 22l2-2 1.5 1.5-2 2z" fill="#7bb2dd"/>
+            <path d="M42 12l1.5-1.5 1 1-1.5 1.5z" fill="#7bb2dd"/>
+          </svg>
+        </div>
+        <div class="card-content">
+          <h3>Permitir acceso a la cámara</h3>
+          <p>(para tomar foto del producto al final)</p>
+          <div class="permit-buttons">
+            <button type="button" class="btn-permit allow">Permitir</button>
+            <button type="button" class="btn-permit deny">No Permitir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fotos y archivos -->
+      <div class="card" data-permission="archivos">
+        <div class="icon-circle">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="vidGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7bb2dd"/>
+                <stop offset="100%" stop-color="#3f7bab"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="18" width="30" height="28" rx="6" fill="url(#vidGrad)"/>
+            <path d="M42 26l14-8v28l-14-8z" fill="url(#vidGrad)"/>
+          </svg>
+        </div>
+        <div class="card-content">
+          <h3>Permitir acceso a fotos y archivos</h3>
+          <p>(para subir imágenes de productos al ftp de la empresa).</p>
+          <div class="permit-buttons">
+            <button type="button" class="btn-permit allow">Permitir</button>
+            <button type="button" class="btn-permit deny">No Permitir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notificaciones -->
+      <div class="card" data-permission="notificaciones">
+        <div class="icon-circle">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bellGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7bb2dd"/>
+                <stop offset="100%" stop-color="#3f7bab"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 8c-9 0-14 7-14 16v8l-6 8h40l-6-8v-8c0-9-5-16-14-16z" fill="url(#bellGrad)"/>
+            <path d="M26 46a6 6 0 0012 0z" fill="url(#bellGrad)"/>
+            <line x1="12" y1="12" x2="52" y2="52" stroke="url(#bellGrad)" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-content">
+          <h3>Permitir notificaciones</h3>
+          <p>(para recibir avisos de trabajos encomendados).</p>
+          <div class="permit-buttons">
+            <button type="button" class="btn-permit allow">Permitir</button>
+            <button type="button" class="btn-permit deny">No Permitir</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <button type="button" class="btn-registrar" id="btnRegistrar">Registrar</button>
+    </div>
+  </div>
+
+  <script>
+    // Toggle selection per card: only one of Permitir / No Permitir active
+    document.querySelectorAll('.card').forEach(card => {
+      const buttons = card.querySelectorAll('.btn-permit');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          card.dataset.value = btn.classList.contains('allow') ? 'permitido' : 'no_permitido';
+        });
+      });
+    });
+
+    document.getElementById('btnRegistrar').addEventListener('click', () => {
+      const resultados = {};
+      document.querySelectorAll('.card').forEach(card => {
+        resultados[card.dataset.permission] = card.dataset.value || 'sin_responder';
+      });
+      console.log('Permisos seleccionados:', resultados);
+      localStorage.setItem('permisos', JSON.stringify(resultados));
+      window.location.href = 'confirmar-informacion.html';
+    });
+  </script>
+
+</body>
+</html>

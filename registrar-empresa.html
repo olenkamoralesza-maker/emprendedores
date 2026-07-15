@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registrar empresa</title>
+<style>
+  :root{
+    --bg-top:#a9cbe8;
+    --bg-bottom:#cfe3f4;
+    --label:#1f5f8b;
+    --input-fill:#4f8fc0;
+    --input-fill-dark:#3f7bab;
+    --input-border: rgba(255,255,255,0.55);
+    --white-line: rgba(255,255,255,0.9);
+    --btn-text:#1f5f8b;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family: 'Poppins','Segoe UI',Arial,sans-serif;
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:#0d1b26;
+    min-height:100vh;
+    padding:24px 0;
+  }
+
+  .phone{
+    width:390px;
+    max-width:100%;
+    min-height:100vh;
+    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 55%, var(--bg-bottom) 100%);
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  /* header */
+  .header{
+    position:relative;
+    padding-top:34px;
+    padding-bottom:26px;
+    text-align:center;
+  }
+
+  .header::before{
+    /* thin white line crossing behind the icon circle */
+    content:"";
+    position:absolute;
+    top:112px;
+    left:0;
+    right:0;
+    height:3px;
+    background: var(--white-line);
+    z-index:1;
+  }
+
+  .icon-ring{
+    position:relative;
+    width:150px;
+    height:150px;
+    margin:0 auto;
+    border-radius:50%;
+    border:5px solid rgba(255,255,255,0.95);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+    background: transparent;
+  }
+
+  .icon-ring::after{
+    /* small arc break with arrow feel at bottom right, decorative */
+    content:"";
+    position:absolute;
+    right:-4px;
+    bottom:18px;
+    width:14px;
+    height:14px;
+    border-right:5px solid rgba(255,255,255,0.95);
+    border-bottom:5px solid transparent;
+    border-radius:50%;
+    transform: rotate(35deg);
+  }
+
+  .briefcase{
+    width:56px;
+    height:46px;
+    position:relative;
+  }
+  .briefcase .handle{
+    position:absolute;
+    top:-14px;
+    left:50%;
+    transform:translateX(-50%);
+    width:22px;
+    height:12px;
+    border:5px solid #fff;
+    border-bottom:none;
+    border-radius:6px 6px 0 0;
+  }
+  .briefcase .body{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#fff;
+    border-radius:6px;
+  }
+  .briefcase .stripe{
+    position:absolute;
+    top:16px;
+    left:0;
+    width:100%;
+    height:6px;
+    background: var(--bg-top);
+  }
+  .briefcase .dot{
+    position:absolute;
+    top:17px;
+    left:50%;
+    transform:translateX(-50%);
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background: var(--bg-top);
+    z-index:2;
+  }
+
+  .title{
+    margin-top:14px;
+    font-size:26px;
+    font-weight:700;
+    color:#ffffff;
+    letter-spacing:0.3px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+
+  /* form */
+  .form{
+    padding:6px 26px 20px;
+  }
+
+  .field{
+    margin-bottom:20px;
+  }
+
+  .field label{
+    display:block;
+    font-size:15.5px;
+    font-weight:700;
+    color: var(--label);
+    margin-bottom:8px;
+  }
+
+  .field input{
+    width:100%;
+    height:46px;
+    border-radius:23px;
+    border: 1px solid var(--input-border);
+    background: linear-gradient(180deg, var(--input-fill) 0%, var(--input-fill-dark) 100%);
+    box-shadow:
+      inset 0 2px 3px rgba(255,255,255,0.35),
+      inset 0 -3px 6px rgba(0,40,70,0.35),
+      0 1px 1px rgba(255,255,255,0.4);
+    padding:0 18px;
+    color:#eaf3fb;
+    font-size:15px;
+    outline:none;
+    transition: box-shadow .15s ease;
+  }
+
+  .field input::placeholder{
+    color: rgba(255,255,255,0.55);
+  }
+
+  .field input:focus{
+    box-shadow:
+      inset 0 2px 3px rgba(255,255,255,0.35),
+      inset 0 -3px 6px rgba(0,40,70,0.35),
+      0 0 0 3px rgba(255,255,255,0.5);
+  }
+
+  /* footer button */
+  .footer{
+    position:relative;
+    padding:18px 26px 34px;
+  }
+
+  .footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background: var(--white-line);
+  }
+
+  .btn-siguiente{
+    display:block;
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:29px;
+    background: linear-gradient(180deg, #ffffff 0%, #eef5fb 100%);
+    color: var(--btn-text);
+    font-size:19px;
+    font-weight:700;
+    letter-spacing:0.3px;
+    box-shadow:
+      0 6px 14px rgba(10,50,90,0.22),
+      inset 0 -2px 3px rgba(150,190,220,0.35);
+    cursor:pointer;
+    margin-top:20px;
+  }
+
+  .btn-siguiente:active{
+    transform: translateY(1px);
+  }
+
+  @media (max-width:400px){
+    .phone{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="phone">
+    <div class="header">
+      <div class="icon-ring">
+        <div class="briefcase">
+          <div class="handle"></div>
+          <div class="body"></div>
+          <div class="dot"></div>
+          <div class="stripe"></div>
+        </div>
+      </div>
+      <div class="title">Registrar empresa</div>
+    </div>
+
+    <form class="form" id="registroEmpresaForm">
+      <div class="field">
+        <label for="ruc">RUC:</label>
+        <input type="text" id="ruc" name="ruc" inputmode="numeric" maxlength="11" required>
+      </div>
+
+      <div class="field">
+        <label for="razonSocial">Razón social:</label>
+        <input type="text" id="razonSocial" name="razonSocial" required>
+      </div>
+
+      <div class="field">
+        <label for="nombreComercial">Nombre comercial:</label>
+        <input type="text" id="nombreComercial" name="nombreComercial" required>
+      </div>
+
+      <div class="field">
+        <label for="tipoNegocio">Tipo de negocio:</label>
+        <input type="text" id="tipoNegocio" name="tipoNegocio" required>
+      </div>
+
+      <div class="field">
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required>
+      </div>
+
+      <div class="field">
+        <label for="departamento">Departamento:</label>
+        <input type="text" id="departamento" name="departamento" required>
+      </div>
+
+      <div class="field">
+        <label for="provincia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia" required>
+      </div>
+
+      <div class="field">
+        <label for="distrito">Distrito:</label>
+        <input type="text" id="distrito" name="distrito" required>
+      </div>
+
+      <div class="field">
+        <label for="correo">Correo de la empresa (opcional):</label>
+        <input type="email" id="correo" name="correo">
+      </div>
+
+      <div class="field">
+        <label for="telefono">Teléfono de la empresa (opcional):</label>
+        <input type="tel" id="telefono" name="telefono">
+      </div>
+    </form>
+
+    <div class="footer">
+      <button type="submit" form="registroEmpresaForm" class="btn-siguiente">Siguiente</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registroEmpresaForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      localStorage.setItem('razonSocial', document.getElementById('razonSocial').value);
+      localStorage.setItem('nombreComercial', document.getElementById('nombreComercial').value);
+      localStorage.setItem('tipoNegocio', document.getElementById('tipoNegocio').value);
+      window.location.href = 'permisos-aplicacion.html';
+    });
+  </script>
+</body>
+</html>

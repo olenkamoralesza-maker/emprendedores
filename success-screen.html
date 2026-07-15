@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro exitoso</title>
+<style>
+  :root{
+    --bg-light: #BFDDF2;
+    --bg-lighter: #DCEBF7;
+    --card-top: #FFFFFF;
+    --card-bottom: #EAF3FB;
+    --blue: #5B93D6;
+    --blue-dark: #14406E;
+    --blue-ring: #A9CFEE;
+    --text: #17416E;
+    --shadow: rgba(30, 70, 120, 0.18);
+  }
+
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body{
+    height: 100%;
+  }
+
+  body{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .stripe{
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 14px;
+    background: var(--bg-lighter);
+  }
+
+  .screen{
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .card{
+    width: 100%;
+    background: linear-gradient(180deg, var(--card-top) 0%, var(--card-bottom) 100%);
+    border-radius: 40px;
+    box-shadow: 0 20px 40px var(--shadow);
+    padding: 60px 34px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* ---------- Ícono de check ---------- */
+  .check-wrap{
+    position: relative;
+    width: 190px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .ring{
+    width: 100%;
+    height: 100%;
+  }
+
+  .check-circle{
+    position: absolute;
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #6EA3E0, #4A7FC9);
+    box-shadow: 0 10px 20px rgba(60,100,160,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .check-mark{
+    width: 56px;
+    height: 44px;
+  }
+
+  /* ---------- Texto ---------- */
+  .message{
+    color: var(--text);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.5;
+    max-width: 320px;
+    margin-bottom: 60px;
+  }
+
+  /* ---------- Botón ---------- */
+  .cta-button{
+    width: 100%;
+    max-width: 340px;
+    padding: 20px;
+    border: none;
+    border-radius: 40px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #EDF3FA 100%);
+    box-shadow: 0 10px 22px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.8);
+    color: var(--blue-dark);
+    font-size: 19px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    margin-bottom: 56px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .cta-button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .cta-button:active{
+    transform: translateY(0);
+  }
+
+  /* ---------- Logo ---------- */
+  .logo-circle{
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 10px 24px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+
+  .logo-icon{
+    width: 70px;
+    height: 55px;
+    margin-bottom: 4px;
+  }
+
+  .logo-text{
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--blue-dark);
+    line-height: 1;
+  }
+
+  .logo-sub{
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.3px;
+    margin-top: 2px;
+  }
+
+  /* ---------- Skyline ---------- */
+  .skyline{
+    width: 100%;
+    max-width: 380px;
+    margin-top: 4px;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 380px){
+    .card{ padding: 44px 20px 30px; }
+    .check-wrap{ width: 160px; height: 160px; }
+    .check-circle{ width: 100px; height: 100px; }
+    .logo-circle{ width: 150px; height: 150px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="screen">
+    <div class="card">
+
+      <!-- Ícono check con anillo -->
+      <div class="check-wrap">
+        <svg class="ring" viewBox="0 0 190 190" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="95" cy="95" r="78" fill="none" stroke="#DCEBF7" stroke-width="14"/>
+          <path d="M95 17 A78 78 0 1 1 30 130"
+                fill="none" stroke="#A9CFEE" stroke-width="14" stroke-linecap="round"/>
+          <polygon points="30,130 14,138 22,120" fill="#A9CFEE"/>
+        </svg>
+        <div class="check-circle">
+          <svg class="check-mark" viewBox="0 0 56 44" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="4,22 20,38 52,4" fill="none" stroke="#FFFFFF"
+                      stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <p class="message">
+        Tus datos han sido registrados exitosamente, vuelve a
+        "Iniciar sesión" para continuar.
+      </p>
+
+      <button class="cta-button">¡Todo listo!</button>
+
+      <div class="logo-circle">
+        <svg class="logo-icon" viewBox="0 0 70 55" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="8" r="7" fill="#14406E"/>
+          <path d="M6 40 C6 30 10 26 14 26 C18 26 22 30 22 40 Z" fill="#14406E"/>
+          <rect x="26" y="30" width="8" height="10" fill="#5B93D6"/>
+          <rect x="37" y="20" width="8" height="20" fill="#5B93D6"/>
+          <rect x="48" y="10" width="8" height="30" fill="#5B93D6"/>
+          <path d="M28 16 L52 4 M52 4 L44 4 M52 4 L52 12"
+                fill="none" stroke="#14406E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="logo-text">small</div>
+        <div class="logo-sub">entrepreneurs</div>
+      </div>
+
+      <svg class="skyline" viewBox="0 0 380 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#8FB8DE" stroke-width="1.4">
+        <path d="M0 55
+          L15 55 L15 40 L28 40 L28 55
+          L40 55 L40 20 L58 20 L58 55
+          L70 55 L70 35 Q75 30 80 35 L80 55
+          L95 55 L95 15 L112 15 L112 55
+          L122 55 L122 45 L135 45 L135 25 L148 25 L148 55
+          L160 55 L160 30 L172 30 L172 55
+          L185 55 L185 10 L200 10 L200 55
+          L212 55 L212 40 Q216 36 220 40 L220 55
+          L232 55 L232 20 L248 20 L248 55
+          L260 55 L260 45 L272 45 L272 25 L285 25 L285 55
+          L298 55 L298 15 L312 15 L312 55
+          L322 55 L322 35 Q327 30 332 35 L332 55
+          L345 55 L345 25 L360 25 L360 55
+          L380 55"/>
+        <circle cx="52" cy="52" r="4"/>
+        <circle cx="105" cy="50" r="3"/>
+        <circle cx="167" cy="52" r="3.5"/>
+        <circle cx="240" cy="50" r="3"/>
+        <circle cx="305" cy="52" r="3.5"/>
+        <circle cx="355" cy="50" r="3"/>
+      </svg>
+
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.cta-button').addEventListener('click', () => {
+      window.location.href = 'promociones.html';
+    });
+  </script>
+</body>
+</html>
